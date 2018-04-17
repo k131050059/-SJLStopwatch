@@ -14,6 +14,7 @@
 		0C6210472085F8CA001D24E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C6210452085F8CA001D24E2 /* LaunchScreen.storyboard */; };
 		0C62104A2085F8CA001D24E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6210492085F8CA001D24E2 /* main.m */; };
 		0C6210522085F940001D24E2 /* SNFiveGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6210512085F940001D24E2 /* SNFiveGame.m */; };
+		0C6210552085FA1A001D24E2 /* SNTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6210542085FA1A001D24E2 /* SNTimer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		0C6210492085F8CA001D24E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0C6210502085F93F001D24E2 /* SNFiveGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFiveGame.h; sourceTree = "<group>"; };
 		0C6210512085F940001D24E2 /* SNFiveGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNFiveGame.m; sourceTree = "<group>"; };
+		0C6210532085FA1A001D24E2 /* SNTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNTimer.h; sourceTree = "<group>"; };
+		0C6210542085FA1A001D24E2 /* SNTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SNTimer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 				0C62103E2085F8C5001D24E2 /* ViewController.m */,
 				0C6210502085F93F001D24E2 /* SNFiveGame.h */,
 				0C6210512085F940001D24E2 /* SNFiveGame.m */,
+				0C6210532085FA1A001D24E2 /* SNTimer.h */,
+				0C6210542085FA1A001D24E2 /* SNTimer.m */,
 				0C6210402085F8C5001D24E2 /* Main.storyboard */,
 				0C6210432085F8CA001D24E2 /* Assets.xcassets */,
 				0C6210452085F8CA001D24E2 /* LaunchScreen.storyboard */,
@@ -148,6 +153,7 @@
 			files = (
 				0C6210522085F940001D24E2 /* SNFiveGame.m in Sources */,
 				0C62103F2085F8C5001D24E2 /* ViewController.m in Sources */,
+				0C6210552085FA1A001D24E2 /* SNTimer.m in Sources */,
 				0C62104A2085F8CA001D24E2 /* main.m in Sources */,
 				0C62103C2085F8C5001D24E2 /* AppDelegate.m in Sources */,
 			);

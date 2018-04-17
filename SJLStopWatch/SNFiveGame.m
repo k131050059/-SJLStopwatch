@@ -7,6 +7,7 @@
 //
 
 #import "SNFiveGame.h"
+#import "SNTimer.h"
 #define Screen_W [UIScreen mainScreen].bounds.size.width
 #define Screen_H [UIScreen mainScreen].bounds.size.height
 @interface SNFiveGame(){
@@ -25,6 +26,9 @@
     
     NSDate * date1970;
     NSDate * startCountDate;
+    SNTimer *gcdTimer;
+    
+    BOOL GCD;
 }
 @property (nonatomic,strong) NSTimer *timer;
 @end
@@ -33,6 +37,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        GCD=YES;
         control =[[UIControl alloc] initWithFrame:self.bounds];
         control.backgroundColor=[UIColor lightGrayColor];
         control.alpha=0.5;
@@ -112,7 +117,7 @@
     [pausebtn addTarget:self action:@selector(pause) forControlEvents:UIControlEventTouchUpInside];
     [mainView addSubview:pausebtn];
 }
--(void)updateLabel:(NSTimer *) timer{
+-(void)updateLabel{
     NSTimeInterval timeDieff = [[[NSDate alloc]init]timeIntervalSinceDate:startCountDate];
     NSDate * timeToShow = [NSDate date];
     
@@ -132,7 +137,12 @@
 }
 
 -(void)resett{
-    [_timer setFireDate:[NSDate distantFuture]];
+    if(GCD){
+        [gcdTimer stop];
+    }else{
+        [_timer setFireDate:[NSDate distantFuture]];
+    }
+    
     _secondL.text=@"0";
     _secondR.text=@"0";
     _msecL.text=@"0";
@@ -142,18 +152,42 @@
 -(void)startt{
 //    date1970 = [NSDate dateWithTimeIntervalSince1970:0];
     startCountDate = [NSDate date];
-    if(_timer == nil){
-        date1970 = [NSDate dateWithTimeIntervalSince1970:0];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.001f target:self selector:@selector(updateLabel:) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
-        [_timer fire];
+    if(GCD){
+        
+            if(gcdTimer == nil){
+                __weak id weakSelf = self;
+                date1970 = [NSDate dateWithTimeIntervalSince1970:0];
+                gcdTimer = [SNTimer repeatingTimerWithTimeInterval:0.001 block:^{
+                    [weakSelf updateLabel];
+                }];
+         
+                [gcdTimer fire];
+            }else{
+                [gcdTimer fire];
+            }
+        
     }else{
-        [_timer setFireDate:[NSDate distantPast]];
-    }
     
+    
+    
+            if(_timer == nil){
+                date1970 = [NSDate dateWithTimeIntervalSince1970:0];
+                _timer = [NSTimer scheduledTimerWithTimeInterval:0.001f target:self selector:@selector(updateLabel) userInfo:nil repeats:YES];
+                [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+                [_timer fire];
+            }else{
+                [_timer setFireDate:[NSDate distantPast]];
+            }
+    
+    
+    }
 }
 -(void)pause{
-    [_timer setFireDate:[NSDate distantFuture]];
+    if(GCD){
+        [gcdTimer stop];
+    }else{
+        [_timer setFireDate:[NSDate distantFuture]];
+    }
 }
 
 
